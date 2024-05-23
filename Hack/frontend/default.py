@@ -1,3 +1,4 @@
+import requests
 import time 
 import json
 import numpy as np
@@ -7,21 +8,36 @@ import plotly.express as px
 from mpl_toolkits.basemap import Basemap
 from matplotlib.colors import LinearSegmentedColormap
 from streamlit_autorefresh import st_autorefresh
+import folium
+import webbrowser
 
-dm = pd.read_json("~/Hack/dados.json")
+
+response = requests.get("http://localhost:8080/inspect/probabilities")
+payload = response.json()["reports"][0]["payload"]
+bytes.fromhex(payload[2:]).decode('utf-8')
+
+        # if payload_str == "probabilities":
+        #     result = json.dumps(probabilities).encode('utf-8').hex()
+
+
+
+dm = pd.read_json("/home/vicente/seila/dados.json")
+ds = pd.read_json("/home/vicente/seila/salvamento.json")
 
 st.set_page_config(
-    page_title="Projeto Hackaton 2024 - Temporário", 
+    page_title="", 
     page_icon='✅', 
     layout="wide", 
     initial_sidebar_state="expanded")
 
 st_autorefresh(interval=5, limit = 100, key="fizzbuzzcounter")
 
-st.title("Projeto Hackaton 2024 - Temporário")
+st.title("GBB → GeoGuardBlock")
 
 # Criando sidebar
 with st.sidebar:
+    # logo_url = '~/vicente/seila/logo.png'
+    # st.sidebar.image(logo_url, width=200)
     st.title("Tipos de gráfico")
     opcoes = ("Gráfico de linha", "Mapa", "Mapa de ocorrência")
     select_option = st.sidebar.selectbox("Selecione uma opção", opcoes)
@@ -40,14 +56,45 @@ for seconds in range(500):
             st.markdown('### Probabilidade de ocorrência de desastres por hora')
             fig = px.line(avg_prob, x=avg_prob.index, y=avg_prob.values, width=600, height=400, labels={'x':'Hora', 'y':'Probabilidade'})
             st.write(fig)
+        st.markdown('### Tabela de probalidade de ocorrência de desastres por região')
+        table = st.table(ds)
         with fig2:
             st.markdown('### Mapa de ocorrência de desastres')
             fig = px.scatter_mapbox(dm, lat=dm["lat"], lon=dm["long"], color=dm["probability"], size=dm["probability"], zoom=13, mapbox_style="open-street-map")
             st.write(fig)
+        st.markdown('### Tabela de ocorrência de desastres')
+        tabela = st.table(dm)
 
 placeholder = st.empty()
 
+# # Create a map object
+# m = folium.Map(location=[dm["lat"].mean(), dm["long"].mean()], zoom_start=12)
 
+# # Add markers to the map
+# for index, row in dm.iterrows():
+#     folium.Marker(
+#         location=[row['lat'], row['long']],
+#         popup=row['location'],
+#         icon=folium.Icon(color='blue')
+#     ).add_to(m)
+
+# # Convert the folium map to HTML
+# map_html = m._repr_html_()
+
+# # Display the map in Streamlit
+# st.markdown(map_html, unsafe_allow_html=True)
+
+# @st.cache
+# def plot_hourly_probability(df):
+#     df["reported_time"] = pd.to_datetime(df["reported_time"])
+#     df['hora'] = df['reported_time'].dt.hour
+#     avg_prob = df.groupby('hora')['probability'].mean()
+#     fig = px.line(avg_prob, x=avg_prob.index, y=avg_prob.values, width=600, height=400, labels={'x':'Hora', 'y':'Probabilidade'})
+#     return fig
+
+# if st.sidebar.button("Mostrar gráfico de probabilidade"):
+#     fig = plot_hourly_probability(dm)
+#     st.plotly_chart(fig)
 
 # if avg_prob.values.max() > 0.4:
 #     st.warning("Alerta → Possível estado crítico de desastre!")
