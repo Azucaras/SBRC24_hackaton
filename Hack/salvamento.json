@@ -1,0 +1,24 @@
+{
+    "probability_data": {
+        "Engenhoca": "Probabilidade muito baixa",
+        "Maria Paula": "Probabilidade baixa",
+        "Cantagalo": "Probabilidade baixa",
+        "Maceió": "Probabilidade baixa",
+        "Cubango": "Probabilidade baixa",
+        "Baldeador": "Probabilidade muito baixa",
+        "Itaipu": "Probabilidade baixa",
+        "Jurujuba": "Probabilidade muito alta",
+        "Fonseca": "Probabilidade baixa"
+    },
+    "percentage_data": {
+        "Engenhoca": "0 a 20%",
+        "Maria Paula": "20 a 40%",
+        "Cantagalo": "20 a 40%",
+        "Maceió": "20 a 40%",
+        "Cubango": "20 a 40%",
+        "Baldeador": "0 a 20%",
+        "Itaipu": "20 a 40%",
+        "Jurujuba": "80 a 100%",
+        "Fonseca": "20 a 40%"
+    }
+}
