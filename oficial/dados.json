@@ -1,5 +1,5 @@
 [{
-    "probability":0.5, 
+    "probability": 54, 
     "reported_time": "23/04/2024 21:00:00", 
     "location": "Niteroi-y", 
     "ID":3,
@@ -7,7 +7,7 @@
     "long":-43.1043
 },
 {
-    "probability":0.6, 
+    "probability":60, 
     "reported_time": "23/04/2024 18:00:00", 
     "location": "Niteroi-z", 
     "ID":3,
@@ -15,23 +15,23 @@
     "long":-43.1043
 },
 {
-    "probability":0.34, 
+    "probability":34, 
     "reported_time": "23/04/2024 20:00:00", 
     "location": "Niteroi-x", 
     "ID":3,
-    "lat":-22.8808,
-    "long":-43.1043
+    "lat":-22.912605, 
+    "long":-43.028185
 },
 {
-    "probability":0.45, 
+    "probability":45, 
     "reported_time": "23/04/2024 22:00:00", 
     "location": "Niteroi-y", 
     "ID":3,
-    "lat":-22.8808,
-    "long":-43.1043
+    "lat":-22.934646,
+    "long":-42.993112
 },
 {
-    "probability":0.35, 
+    "probability":35, 
     "reported_time": "23/04/2024 19:00:00", 
     "location": "Niteroi-z", 
     "ID":3,
@@ -39,7 +39,7 @@
     "long":-43.1043
 },
 {
-    "probability":0.62, 
+    "probability":62, 
     "reported_time": "23/04/2024 17:00:00", 
     "location": "Niteroi-x", 
     "ID":3,
